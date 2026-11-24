@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { errMsg } from '../services/api';
+import AuthLayout from '../components/AuthLayout';
 
 export default function Login() {
   const { user, login } = useAuth();
@@ -21,14 +22,23 @@ export default function Login() {
     }
   };
 
+  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
   return (
-    <form className="card auth" onSubmit={submit}>
-      <h2>Login</h2>
-      {error && <p className="error">{error}</p>}
-      <input type="email" placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
-      <input type="password" placeholder="Password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
-      <button className="btn">Login</button>
-      <p>No account? <Link to="/register">Register</Link></p>
-    </form>
+    <AuthLayout>
+      <form className="auth-form" onSubmit={submit}>
+        <h1>Welcome back 👋</h1>
+        <p className="sub">Log in to your TaskFlow account</p>
+        {error && <p className="error">{error}</p>}
+        <label>Email
+          <input type="email" placeholder="you@example.com" value={form.email} onChange={set('email')} required />
+        </label>
+        <label>Password
+          <input type="password" placeholder="Enter your password" value={form.password} onChange={set('password')} required />
+        </label>
+        <button className="btn">Login</button>
+        <p className="switch">New here? <Link to="/register">Create an account</Link></p>
+      </form>
+    </AuthLayout>
   );
 }

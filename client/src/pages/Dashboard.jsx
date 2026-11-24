@@ -5,6 +5,8 @@ import Navbar from '../components/Navbar';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import UserManager from '../components/UserManager';
+import Banner from '../components/Banner';
+import Footer from '../components/Footer';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -71,6 +73,7 @@ export default function Dashboard() {
     <>
       <Navbar />
       <main className="container">
+        <Banner />
         {error && <p className="error">{error}</p>}
 
         <div className="stats">
@@ -95,6 +98,7 @@ export default function Dashboard() {
 
         {isAdmin && <UserManager users={users} onRole={changeRole} onDelete={deleteUser} />}
       </main>
+      <Footer />
     </>
   );
 }
