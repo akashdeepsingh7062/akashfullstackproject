@@ -2,7 +2,7 @@ import { useAuth } from '../context/AuthContext';
 
 export default function TaskList({ tasks, onStatus, onDelete }) {
   const { user } = useAuth();
-  const canManage = user.role !== 'member';
+  const canManage = ['admin', 'manager'].includes(user.role);
 
   if (!tasks.length) return <p className="muted">No tasks found.</p>;
 
@@ -17,7 +17,7 @@ export default function TaskList({ tasks, onStatus, onDelete }) {
           <p className="muted">{t.description || 'No description'}</p>
           <small>Assigned: {t.assignedTo?.name || '—'} | Due: {t.dueDate ? new Date(t.dueDate).toLocaleDateString() : '—'}</small>
           <div className="row between" style={{ marginTop: 10 }}>
-            <select value={t.status} onChange={(e) => onStatus(t._id, e.target.value)}>
+            <select disabled={user.role === "guest"} value={t.status} onChange={(e) => onStatus(t._id, e.target.value)}>
               <option value="todo">To do</option>
               <option value="in-progress">In progress</option>
               <option value="done">Done</option>

@@ -2,9 +2,8 @@ export default function AuthLayout({ children }) {
   return (
     <div className="auth-page">
       <aside className="auth-side">
-        <div className="brand">
-          <img src="/logo.svg" alt="" />
-          <span>TaskFlow</span>
+        <div className="logo-badge">
+          <img src="/logo-full.png" alt="TaskFlow" />
         </div>
         <h2>Organise work.<br />Ship faster.</h2>
         <p>Assign tasks, track progress and manage your team with role-based access.</p>
