@@ -25,13 +25,14 @@ export function AuthProvider({ children }) {
 
   const login = (email, password) => authenticate('login', { email, password });
   const register = (name, email, password) => authenticate('register', { name, email, password });
+  const guest = () => authenticate('guest', {});
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, register, guest, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -232,3 +232,9 @@ tbody tr:hover { background: #f5f3ff; }
 }
 
 .side-contact { font-size: 13px; margin-top: 4px; opacity: 0.9; }
+
+.forgot { align-self: flex-end; font-size: 13px; color: var(--primary-dark); font-weight: 600; text-decoration: none; margin-top: -4px; }
+.forgot:hover { text-decoration: underline; }
+.btn.ghost { background: #fff; color: var(--primary-dark); border: 1.5px solid var(--primary); }
+.btn.ghost:hover { background: #eef2ff; box-shadow: none; }
+.success { color: #166534; background: #dcfce7; padding: 10px 14px; border-radius: 10px; border: 1px solid #bbf7d0; font-size: 14px; margin: 0; }

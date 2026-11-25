@@ -7,7 +7,7 @@ const populate = (q) => q.populate('createdBy', 'name email').populate('assigned
 exports.getTasks = async (req, res, next) => {
   try {
     const filter = {};
-    if (req.user.role === 'member') filter.assignedTo = req.user._id;
+    if (['member', 'guest'].includes(req.user.role)) filter.assignedTo = req.user._id;
     if (req.query.status) filter.status = req.query.status;
     res.json(await populate(Task.find(filter).sort('-createdAt')));
   } catch (err) {
@@ -39,6 +39,7 @@ exports.updateTask = async (req, res, next) => {
     const task = await Task.findById(req.params.id);
     if (!task) return res.status(404).json({ message: 'Task not found' });
 
+    if (req.user.role === 'guest') return res.status(403).json({ message: 'Guests have read-only access' });
     if (req.user.role === 'member') {
       if (String(task.assignedTo) !== String(req.user._id)) {
         return res.status(403).json({ message: 'You can only update tasks assigned to you' });
