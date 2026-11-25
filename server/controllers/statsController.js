@@ -60,7 +60,6 @@ exports.performance = async (req, res, next) => {
     res.json(await ranked());
   } catch (e) { next(e); }
 };
-cat >> controllers/statsController.js <<'EOF'
 
 exports.monthly = async (req, res, next) => {
   try {
