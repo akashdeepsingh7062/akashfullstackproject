@@ -7,6 +7,10 @@ import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
+import Reminders from './pages/Reminders';
+import Leaderboard from './pages/Leaderboard';
+import Analytics from './pages/Analytics';
+import Performance from './pages/Performance';
 
 export default function App() {
   return (
@@ -19,6 +23,10 @@ export default function App() {
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/reminders" element={<Reminders />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/performance" element={<Performance />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
